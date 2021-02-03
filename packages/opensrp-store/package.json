@@ -1,0 +1,50 @@
+{
+  "name": "@opensrp/store",
+  "version": "0.0.7",
+  "description": "App Store initializer for OpennSRP web",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/opensrp/web",
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "test": "cd ../../ && yarn test packages/keycloak-service --verbose --collectCoverage=true && cd packages/keycloak-service",
+    "test:watch": "cd ../../ && yarn test packages/keycloak-service --verbose --watch && cd packages/keycloak-service",
+    "tsc": "tsc",
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'",
+    "copy": "copyfiles -u 1 \"./src/**/*.{css,html}\" \"./dist/\"",
+    "build": "yarn run tsc && yarn run transpile && yarn run copy",
+    "transpile:windows": "babel src -d dist --root-mode upward --extensions .ts,.tsx --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/opensrp/web/issues"
+  },
+  "dependencies": {
+    "@onaio/connected-reducer-registry": "^0.0.3",
+    "@onaio/gatekeeper": "^0.1.1",
+    "@onaio/redux-reducer-registry": "^0.0.9",
+    "@onaio/session-reducer": "^0.0.11",
+    "@onaio/utils": "^0.0.1",
+    "connected-react-router": "^6.8.0",
+    "reselect": "^4.0.0"
+  },
+  "peerDependencies": {
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "private": false
+}

@@ -1,0 +1,134 @@
+{
+  "name": "opensrp-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "cd ./app && react-scripts start",
+    "build": "cd ./app && react-scripts build",
+    "lerna:prepublish": "lerna bootstrap && lerna run build --include-dependencies --stream",
+    "lerna:version": "lerna version --conventional-commits --create-release github --sign-git-commit --sign-git-tag",
+    "lerna:publish": "yarn install && yarn run lerna:prepublish && lerna publish from-package --ignore-scripts --ignore-prepublish",
+    "test": "TZ='UTC' jest",
+    "test:watch": "TZ='UTC' jest --watch",
+    "lint": "eslint '{packages,app}/**/*.{js,ts,tsx}' --max-warnings 0",
+    "lint-snap": "eslint '{packages,app}/**/*.snap'"
+  },
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "!(*d).ts": [
+      "eslint --fix --max-warnings 0",
+      "git add"
+    ],
+    "*.tsx": [
+      "eslint --fix --max-warnings 0",
+      "git add"
+    ],
+    "!(**/*dist/**/*)(*eslint).{js,jsx}": [
+      "eslint --fix --max-warnings 0",
+      "git add"
+    ],
+    "*.{json,js,jsx,ts,tsx,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{snap, test.tsx}": [
+      "eslint"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@onaio/connected-private-route": "^0.0.11",
+    "@onaio/connected-reducer-registry": "^0.0.3",
+    "@opensrp/server-logout": "^0.0.1",
+    "@reduxjs/toolkit": "^1.5.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/bootstrap": "^4.5.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/enzyme-to-json": "^1.5.3",
+    "@types/geojson": "^7946.0.7",
+    "@types/jest": "^26.0.13",
+    "@types/lodash": "^4.14.163",
+    "@types/node": "^14.6.4",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux-mock-store": "^1.0.2",
+    "@types/redux-testkit": "^1.0.5",
+    "@types/seamless-immutable": "^7.1.13",
+    "@types/yup": "^0.29.9",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "babel-eslint": "^10.0.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "copyfiles": "^2.4.0",
+    "coveralls": "^3.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-typestrict": "^1.0.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-jsdoc": "^30.6.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "flush-promises": "^1.0.2",
+    "husky": "^4.2.5",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-fetch-mock": "^3.0.3",
+    "jest-haste-map": "^26.3.0",
+    "jest-resolve": "^26.4.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.3.0",
+    "mockdate": "^3.0.2",
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^7.2.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
+    "redux-mock-store": "^1.5.4",
+    "redux-testkit": "^1.0.6",
+    "redux-thunk": "^2.3.0",
+    "typescript": "~3.8.3"
+  },
+  "resolutions": {
+    "react-scripts/jest": "25.3.0"
+  },
+  "workspaces": [
+    "app",
+    "packages/*"
+  ],
+  "dependencies": {
+    "tsd": "^0.13.1"
+  }
+}

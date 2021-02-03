@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/ConnectedHeader renders the ConnectedHeader component 1`] = `
+Object {
+  "children": Array [
+    <Button
+      className="bg-transparent border-0"
+      icon={<ForwardRef(BellOutlined) />}
+      type="primary"
+    >
+      <Link
+        to="/login"
+      >
+        Login
+      </Link>
+    </Button>,
+    <Button
+      className="bg-transparent border-0"
+      icon={<ForwardRef(GlobalOutlined) />}
+      shape="circle"
+      type="primary"
+    />,
+  ],
+  "className": "txt-white align-items-center justify-content-end px-1 layout-header",
+}
+`;
+
+exports[`components/ConnectedHeader renders the ConnectedHeader when logged in 1`] = `
+Object {
+  "children": Array [
+    <Dropdown
+      mouseEnterDelay={0.15}
+      mouseLeaveDelay={0.1}
+      overlay={
+        <Menu>
+          <MenuItem>
+            <Link
+              to="/logout"
+            >
+              Logout
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to="/admin/users/edit/cab07278-c77b-4bc7-b154-bcbf01b7d35b"
+            >
+              Manage account
+            </Link>
+          </MenuItem>
+        </Menu>
+      }
+      placement="bottomRight"
+    >
+      <Button
+        className="h-auto d-flex align-items-center bg-transparent border-0 rounded-0"
+        icon={
+          <Avatar
+            className="mr-1 bg-white"
+            shape="circle"
+            size="default"
+          >
+            RobertBaratheon
+          </Avatar>
+        }
+        shape="circle"
+        type="primary"
+      >
+        RobertBaratheon
+      </Button>
+    </Dropdown>,
+    <Button
+      className="bg-transparent border-0"
+      icon={<ForwardRef(GlobalOutlined) />}
+      shape="circle"
+      type="primary"
+    />,
+  ],
+  "className": "txt-white align-items-center justify-content-end px-1 layout-header",
+}
+`;
